@@ -176,6 +176,7 @@ class MapViewAnimationDirector : NSObject {
 }
 
 extension MapViewAnimationDirector : MKMapViewDelegate {
+    //Set the icon for every pin
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         if let annotation = annotation as? Annotation {
@@ -188,6 +189,7 @@ extension MapViewAnimationDirector : MKMapViewDelegate {
         return nil
     }
     
+    //Every Pin Dropped into the map will be animated with a 'pop' animation
     func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
         for view in views {
             view.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
@@ -210,6 +212,7 @@ extension MapViewAnimationDirector : MKMapViewDelegate {
         
     }
     
+    //The lines must be animated by using a simple timer. It's not nice, but it works
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer
     {
         if let overlay = overlay as? MyLine {
